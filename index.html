@@ -1,0 +1,171 @@
+<html>
+  <head>
+    <title>Chimp.js</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-title" content="Chimp.js">
+    <meta name="application-name" content="Chimp.js">
+    <meta name="msapplication-TileColor" content="#ff8047">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ff8047">
+
+    <link href="http://fonts.googleapis.com/css?family=Michroma" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="stylesheets/normalize.css">
+    <link rel="stylesheet" href="stylesheets/skeleton.css">
+    <link rel="stylesheet" href="stylesheets/main.css">
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+      jQuery(function($) {
+        $(document).on('click', '[href^=#]', function(event) {
+          event.preventDefault();
+          var $target = $($(event.currentTarget).attr('href'));
+          if ($target.length) {
+            $('body').animate({scrollTop: $target.offset().top - 128}, 600);
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <nav id="main-nav">
+      <div class="container">
+        <div class="row">
+          <div class="six columns text-left">
+            <h1 id="logo"><img src="images/logo.svg" alt="Chimp.js" width=80 height=80> Chimp.js</h1>
+          </div>
+          <div class="six columns text-right">
+            <ul>
+              <li><a href="#intro">Intro</a></li>
+              <li><a href="#quick-start">Quick Start</a></li>
+              <li><a href="#docs">Docs</a></li>
+              <li><a href="https://github.com/xolvio/chimp"><img src="images/github.svg" width=40 height=40></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section id="intro">
+      <div class="container">
+        <div class="row">
+          <div class="seven columns">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" width="640" height="360" src="https://www.youtube.com/embed/Ac9ou9Vi0q8?rel=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="five columns">
+            <p>
+              Chimp is an end-to-end acceptance testing package that combines CucumberJS, PhantomJS, WebdriverIO, Chai, Chai-as-promised and DDP - all working in seamless unison.
+            </p>
+            <ul>
+              <li>This is feature number one</li>
+              <li>This is feature number two</li>
+              <li>This is feature number three</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="intro-buttons">
+          <iframe src="https://ghbtns.com/github-btn.html?user=xolvio&repo=chimp&type=star&count=true&size=large" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+          <iframe src="https://ghbtns.com/github-btn.html?user=xolvio&repo=chimp&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="130px" height="30px"></iframe>
+          <iframe src="https://ghbtns.com/github-btn.html?user=xolvio&repo=chimp&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="quick-start">
+      <div class="container">
+        <h2>Quick Start</h2>
+        <p>
+          So easy a primate could do it…
+        </p>
+        <div class="row">
+          <div class="quick-start-step four columns">
+            <h4>1. Install</h4>
+            <code>
+              $ npm install chimp -g
+            </code>
+          </div>
+          <div class="quick-start-step four columns">
+            <h4>2. Develop</h4>
+            <code>
+              $ chimp --watch
+            </code>
+          </div>
+          <div class="quick-start-step four columns">
+            <h4>3. Test</h4>
+            <code>
+              $ chimp --browser=chrome,firefox
+            </code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="docs">
+      <div class="container">
+        <h3>#RTFM</h3>
+        <p>
+          <a href="https://github.com/xolvio/chimp" class="button"><img src="images/github.svg" width=40 height=40> Docs on Github</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="logos">
+      <div class="container">
+        <h2>chimp plays well with…</h2>
+        <a class="logo" href="https://nodejs.org/"><img src="images/node.png" width=204 height=58></a>
+        <a class="logo" href="https://www.meteor.com/"><img src="images/meteor.png" width=217 height=52></a>
+        <a class="logo" href="https://saucelabs.com/"><img src="images/saucelabs.png" width=283 height=60></a>
+        <a class="logo" href="http://simian.io"><img src="images/simian.png" width=234 height=45></a>
+        <a class="logo" href="http://phantomjs.org/"><img src="images/phantom.png" width=275 height=66></a>
+        <a class="logo" href="https://cucumber.io/docs/reference/javascript"><img src="images/cucumber.png" width=267 height=54></a>
+        <a class="logo" href="http://www.seleniumhq.org/"><img src="images/selenium.png" width=259 height=53></a>
+      </div>
+    </section>
+
+    <a id="simian" href="http://simian.io">
+      <div class="container">
+        <img src="images/simian.svg" alt="Simian.io" width=100 height=100>
+        <h3>Try Simian</h3>
+        <p>
+          Realtime collaboration and reporting for your Cucumber specs
+        </p>
+      </div>
+    </a>
+
+    <footer id="main-footer">
+      <div class="container">
+        <p>
+          <a href="http://xolv.io" id="main-footer-logo">
+            <img src="images/xolvio.svg" alt="Xolv.io" width=82 height=102>
+          </a>
+        </p>
+        <p>
+          Chimp.js is brought to you by <a href="http://xolv.io">Xolv.io</a> &copy; 2015
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

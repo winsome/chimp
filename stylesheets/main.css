@@ -1,0 +1,375 @@
+::-moz-selection { background: #FF8047; color: #fff; text-shadow: none; }
+::selection { background: #FF8047; color: #fff; text-shadow: none; }
+
+html, body {
+  /*height: 100%;*/
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  padding-top: 128px;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #333;
+}
+
+h1, h2 {
+  font-family: 'Michroma', sans-serif;
+  font-size: 52px;
+  text-transform: lowercase;
+  margin: 0;
+}
+
+h3 {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 52px;
+  margin: 0;
+}
+
+h4 {
+  font-family: 'Lato', sans-serif;
+  font-size: 26px;
+  text-transform: uppercase;
+  margin: 0 0 12px 0;
+  color: #fff;
+  font-weight: 700;
+}
+
+p {
+  margin: 0 0 20px 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+  color: #FF8047;
+  text-decoration: none;
+}
+  a:hover, a:active {
+    border-bottom: 1px solid #FFC0A3;
+  }
+
+a.button {
+  display: inline-block;
+  font-size: 26px;
+  text-transform: uppercase;
+  border: 3px solid #fff;
+  border-radius: 40px;
+  padding: 14px 28px;
+  background: #FF8047;
+  color: #fff;
+  font-weight: 400;
+  height: 76px;
+  line-height: 40px;
+  vertical-align: middle;
+}
+  a.button img {
+    vertical-align: top;
+    margin-right: 12px;
+  }
+  a.button:hover {
+    color: #fff;
+    background: #C1501E;
+    border-color: #fff;
+  }
+
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+
+nav#main-nav {
+  height: 128px;
+  background: #FF8047;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid #FFC0A3;
+  z-index: 9999;
+  overflow: hidden;
+}
+  nav#main-nav h1 {
+    /*float: left;*/
+  }
+  nav#main-nav ul {
+    list-style: none;
+    /*float: right;*/
+    margin: 0;
+    padding: 0;
+  }
+  nav#main-nav li {
+    display: inline;
+  }
+  nav#main-nav a {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 26px 12px;
+    margin-top: 16px;
+    font-size: 24px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+    nav#main-nav a img {
+      vertical-align: middle;
+    }
+    nav#main-nav a:hover, nav#main-nav a:active {
+      color: #FFC0A3;
+      border: 0;
+    }
+
+h1#logo {
+  height: 128px;
+  line-height: 110px;
+}
+  h1#logo img {
+    vertical-align: middle;
+  }
+
+section {
+  padding: 75px 0;
+}
+
+section#intro {
+  text-align: left;
+}
+  section#intro p {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  section#intro ul {
+    list-style: none;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 28px;
+  }
+    section#intro li {
+      padding-left: 36px;
+      background: transparent url("../images/check.svg") left center no-repeat;
+    }
+  #intro-buttons {
+    text-align: center;
+    background: #efefef;
+    padding: 24px;
+    border-radius: 100px;
+    margin: 48px auto 0 auto;
+    max-width: 600px;
+  }
+
+
+section#quick-start {
+  background: #FF8047;
+  color: #fff;
+}
+  section#quick-start p {
+    color: #FFC0A3;
+    font-size: 26px;
+    font-weight: 400;
+  }
+  .quick-start-step code {
+    display: block;
+    height: 80px;
+    padding: 1.5rem;
+    background: #FFCCB5;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    color: #C75D2E;
+    text-align: left;
+    font-size: 16px;
+  }
+
+section#docs {
+  background: #4A4A4A;
+  color: #fff;
+}
+  section#docs h3 {
+    margin-bottom: 24px;
+    display: inline-block;
+    position: relative;
+  }
+  section#docs h3:after {
+    content: "";
+    width: 125px;
+    height: 64px;
+    position: absolute;
+    top: 30px;
+    left: 190px;
+    background: transparent url("../images/arrow.svg") top right no-repeat;
+  }
+
+section#logos {
+
+}
+  section#logos h2 {
+    color: #FF8047;
+  }
+  a.logo {
+    display: inline-block;
+    margin: 24px 12px;
+    width: 300px;
+    height: 70px;
+  }
+    a.logo:hover {
+      border: 0;
+    }
+    a.logo img {
+      vertical-align: middle;
+    }
+
+a#simian, a#simian:hover, a#simian:active {
+  display: block;
+  background: #4A4A4A url("../images/feature-code.png") center center repeat;
+  background-attachment: fixed;
+  background-size: 100%;
+  color: #fff;
+  border: 0;
+  text-align: left;
+  padding: 40px 0;
+}
+  a#simian .container:before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 52px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -27px;
+    background: transparent url("../images/arrow-right.svg") top left no-repeat;
+  }
+  a#simian .container {
+    padding-left: 120px;
+  }
+  a#simian img {
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    left: 0;
+  }
+  a#simian h3 {
+    font-family: 'Michroma', sans-serif;
+    font-size: 52px;
+    line-height: 52px;
+    text-transform: lowercase;
+    margin-bottom: 6px;
+  }
+
+footer#main-footer {
+  background: #FF8047;
+  color: #fff;
+  padding: 75px 0;
+}
+  footer#main-footer p {
+    font-size: 20px;
+  }
+  footer#main-footer a, footer#main-footer a:link, footer#main-footer a:visited, footer#main-footer a:hover, footer#main-footer a:active {
+    color: #fff;
+    text-decoration: none;
+  }
+  footer#main-footer a:hover, footer#main-footer a:active {
+    color: #fff;
+    border-bottom: 1px solid #FFC0A3;
+  }
+  a#main-footer-logo:hover {
+    border: 0 !important;
+  }
+
+/* Responsive embed from Bootstrap */
+.embed-responsive {
+  position: relative;
+  display: block;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.embed-responsive .embed-responsive-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  border: 0;
+}
+
+.embed-responsive-16by9 {
+  padding-bottom: 56.25%;
+}
+
+.embed-responsive-4by3 {
+  padding-bottom: 75%;
+}
+
+@media (max-width: 999px) {
+  nav#main-nav ul {
+    display: none;
+  }
+
+  h1#logo {
+    text-align: center;
+  }
+
+  section#intro .embed-responsive {
+    margin-bottom: 24px;
+  }
+  section#intro ul {
+    width: 440px;
+    margin: 0 auto;
+  }
+
+  #intro-buttons {
+    margin-top: 24px;
+  }
+
+  .quick-start-step code {
+    margin: 0 auto 24px auto;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 400px) {
+  body {
+    padding-top: 0;
+  }
+
+  nav#main-nav {
+    position: static;
+  }
+
+  h1#logo {
+    font-size: 40px;
+  }
+
+  section#intro ul {
+    width: auto;
+  }
+
+  section#docs h3:after {
+    display: none;
+  }
+
+  #intro-buttons iframe {
+    display: block;
+    margin: 12px auto;
+  }
+
+  a#simian .container:before {
+    display: none;
+  }
+
+  a.button {
+    font-size: 20px;
+  }
+}

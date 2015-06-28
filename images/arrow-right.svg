@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="30px" height="54px" viewBox="0 0 30 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>Path</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Chimp" sketch:type="MSArtboardGroup" transform="translate(-1254.000000, -2083.000000)" fill="#FFFFFF" opacity="0.600000024">
+            <g id="Simian" sketch:type="MSLayerGroup" transform="translate(0.000000, 2027.000000)">
+                <path d="M1273.96243,82.9941386 L1273.96243,82.9941386 L1254.36206,62.5848982 C1253.8697,62.0808216 1253.88142,61.2485091 1254.3855,60.7327098 L1257.89059,57.1455602 C1258.39467,56.6297609 1259.21526,56.6180381 1259.70761,57.1221147 L1283.64539,82.0563217 C1283.90329,82.3142214 1284.02051,82.6659027 1283.99707,83.0058614 C1284.00879,83.3575427 1283.89156,83.6975013 1283.64539,83.955401 L1259.70761,108.877885 C1259.21526,109.381962 1258.39467,109.370239 1257.89059,108.85444 L1254.3855,105.26729 C1253.88142,104.751491 1253.8697,103.919178 1254.36206,103.415102 L1273.96243,82.9941386 L1273.96243,82.9941386 Z" id="Path" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

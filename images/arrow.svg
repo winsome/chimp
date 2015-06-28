@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="125px" height="64px" viewBox="0 0 125 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>Path 11 + Path 12</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Chimp" sketch:type="MSArtboardGroup" transform="translate(-835.000000, -1313.000000)" stroke="#FFFFFF" stroke-width="2">
+            <g id="Docs" sketch:type="MSLayerGroup" transform="translate(0.000000, 1206.000000)">
+                <g id="Path-11-+-Path-12" transform="translate(835.000000, 108.000000)" sketch:type="MSShapeGroup">
+                    <path d="M0.483531768,5.12599035 C0.66864355,5.12599035 133.635732,-18.3593658 113.379803,43.2603062 C111.343949,49.4534881 106.285664,54.1998674 102.738594,59.669648" id="Path-11"></path>
+                    <path d="M93.0968624,44.3194546 C100.726108,65.7811653 91.1535476,62.2789431 124.911095,58.7795655" id="Path-12"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
