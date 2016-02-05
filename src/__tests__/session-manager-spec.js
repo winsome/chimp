@@ -310,7 +310,7 @@ describe('Session Manager', function () {
       expect(callback.mock.calls.length).toBe(1);
       expect(callback.mock.calls[0][0]).toBe('[chimp][session-manager] timed out retrying to connect to selenium server');
 
-    })
+    });
 
   });
 

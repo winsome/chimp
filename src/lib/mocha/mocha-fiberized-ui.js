@@ -3,19 +3,19 @@
 // A copy of bdd interface, but beforeEach, afterEach, before, after,
 // and it methods all run within fibers.
 var Mocha = require('mocha'),
-    bdd   = Mocha.interfaces.bdd,
-    _     = require('underscore'),
-    Fiber = require('fibers'),
-    util  = require('util');
+  bdd = Mocha.interfaces.bdd,
+  _ = require('underscore'),
+  Fiber = require('fibers'),
+  util = require('util');
 
 // Wrap a function in a fiber.  Correctly handles expected presence of
 // done callback
-function fiberize (fn) {
+function fiberize(fn) {
   return function (done) {
     var self = this;
     Fiber(function () {
       try {
-        if (fn.length == 1) {
+        if (fn.length === 1) {
           fn.call(self, done);
         } else {
           fn.call(self);
@@ -23,7 +23,7 @@ function fiberize (fn) {
         }
       } catch (e) {
         process.nextTick(function () {
-          throw(e);
+          throw (e);
         });
       }
     }).run();

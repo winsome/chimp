@@ -1,9 +1,9 @@
 var Mocha = require('mocha'),
-    fs    = require('fs'),
-    path  = require('path'),
-    exit  = require('exit'),
-    glob  = require('glob'),
-    ui    = require('./mocha-fiberized-ui');
+  fs = require('fs'),
+  path = require('path'),
+  exit = require('exit'),
+  glob = require('glob'),
+  ui = require('./mocha-fiberized-ui');
 
 var mochaOptions = {
   ui: 'fiberized-bdd-ui',
@@ -35,6 +35,6 @@ try {
     exit(failures);
   });
 } catch (e) {
-  throw(e);
+  throw (e);
 }
 

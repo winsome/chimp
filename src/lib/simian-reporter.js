@@ -1,5 +1,5 @@
 var request = require('request'),
-    log     = require('./log');
+  log = require('./log');
 
 /**
  * SimianReporter Constructor
@@ -7,7 +7,7 @@ var request = require('request'),
  * @param {Object} options
  * @api public
  */
-function SimianReporter (options) {
+function SimianReporter(options) {
   this.options = options;
 
   // FIXME: We need a way to isolate instance in jest tests, until then this allows asserions
@@ -43,11 +43,11 @@ SimianReporter.prototype.report = function (result, callback) {
       result: JSON.parse(result[1][1])
     }
   }, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
+    if (!error && response.statusCode === 200) {
       log.debug('[chimp][simian-reporter]', 'received data', body);
     } else {
       if (body) {
-        console.error('[chimp][simian-reporter] Error from Simian:', body.error)
+        console.error('[chimp][simian-reporter] Error from Simian:', body.error);
       } else {
         console.error('[chimp][simian-reporter]', 'Error while sending result to Simian:', error);
       }

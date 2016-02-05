@@ -1,10 +1,10 @@
-var path          = require('path'),
-    cp            = require('child-process-debug'),
-    processHelper = require('./../process-helper.js'),
-    log           = require('./../log'),
-    _             = require('underscore'),
-    colors        = require('colors'),
-    fs            = require('fs-extra');
+var path = require('path'),
+  cp = require('child-process-debug'),
+  processHelper = require('./../process-helper.js'),
+  log = require('./../log'),
+  _ = require('underscore'),
+  colors = require('colors'),
+  fs = require('fs-extra');
 
 /**
  * Cucumber Constructor
@@ -13,7 +13,7 @@ var path          = require('path'),
  * @api public
  */
 
-function Cucumber (options) {
+function Cucumber(options) {
   this.options = options;
   this.cucumberChild = null;
 }
@@ -28,7 +28,7 @@ function Cucumber (options) {
 Cucumber.prototype.start = function (callback) {
 
   var self = this,
-      args = _getExecOptions(self.options);
+    args = _getExecOptions(self.options);
 
   if (!fs.existsSync(self.options.path)) {
     log.info('[chimp][cucumber] Directory', self.options.path, 'does not exist. Not running');
@@ -126,7 +126,7 @@ Cucumber.prototype.interrupt = function (callback) {
 
 };
 
-Cucumber.prototype._getRecommendedFilename = function(line) {
+Cucumber.prototype._getRecommendedFilename = function (line) {
   var stepType = line.match(/this\.(Given|When|Then)/)[1];
   var recommendedFilename = stepType + ' ' + line.match(/\^(.*)\$/)[1];
   recommendedFilename = recommendedFilename.replace(/".*"/g, '#');
@@ -187,17 +187,17 @@ Cucumber.prototype._conditionMessage = function (message) {
     return;
   }
 
-  var msg            = '',
-      basePath       = path.resolve('.', this.options.path),
-      basePathParent = path.resolve(basePath, '..'),
-      TAB            = '    ';
+  var msg = '',
+    basePath = path.resolve('.', this.options.path),
+    basePathParent = path.resolve(basePath, '..'),
+    TAB = '    ';
 
   try {
 
     _.each(message.split('\n'), function (line) {
 
-      var trimmedLine      = line.trim(),
-          relativePathLine = line.replace(basePathParent + path.sep, '');
+      var trimmedLine = line.trim(),
+        relativePathLine = line.replace(basePathParent + path.sep, '');
 
       // filter out some known unnecessary lines
       //console.error('[' + line + ']');
@@ -230,7 +230,7 @@ Cucumber.prototype._conditionMessage = function (message) {
 
 };
 
-function _getExecOptions (options) {
+function _getExecOptions(options) {
   var execOptions = ['node', path.resolve(__dirname,
     path.join('..', '..', '..', 'node_modules', '.bin', 'cucumber.js')
   )];
@@ -276,12 +276,12 @@ function _getExecOptions (options) {
       _.forEach(optionValues, function (optionValue) {
         execOptions.push('--' + optionName);
         execOptions.push(optionValue.toString());
-      })
+      });
     } else if (_.contains(allowedCucumberJsOptions.short, optionName)) {
       _.forEach(optionValues, function (optionValue) {
         execOptions.push('-' + optionName);
         execOptions.push(optionValue.toString());
-      })
+      });
     } else if (_.last(optionValues) === false &&
       _.contains(allowedCucumberJsOptions.long, 'no-' + optionName)
     ) {

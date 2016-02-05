@@ -36,7 +36,7 @@ describe('Simian reporter', function () {
 
   });
 
-  it('shows the error to the user when Simian returns a non 200 response', function() {
+  it('shows the error to the user when Simian returns a non 200 response', function () {
 
     var request = require('request');
 
@@ -67,7 +67,7 @@ describe('Simian reporter', function () {
     expect(console.error).toHaveBeenCalledWith('[chimp][simian-reporter] Error from Simian:', 'invalid accessToken');
   });
 
-  it('shows the error to the user when a request error happens before reaching the Simian API', function() {
+  it('shows the error to the user when a request error happens before reaching the Simian API', function () {
 
     var request = require('request');
 

@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-var Chimp    = require('../lib/chimp.js'),
-    minimist = require('minimist'),
-    freeport = require('freeport'),
-    exit     = require('exit'),
-    log      = require('../lib/log'),
-    path     = require('path');
+var Chimp = require('../lib/chimp.js'),
+  minimist = require('minimist'),
+  freeport = require('freeport'),
+  exit = require('exit'),
+  log = require('../lib/log'),
+  path = require('path');
 
 // Make babel plugins available to Cucumber
 process.env.NODE_PATH += ':' + path.resolve(__dirname, '../../node_modules');
@@ -70,7 +70,7 @@ try {
       startChimp(argv);
     });
   } else {
-    startChimp(argv)
+    startChimp(argv);
   }
 
 } catch (ex) {
@@ -78,7 +78,7 @@ try {
   exit(2);
 }
 
-function startChimp (options) {
+function startChimp(options) {
   var chimp = new Chimp(options);
   chimp.init(function (err) {
     if (err) {

@@ -1,18 +1,18 @@
-var chai            = require('chai'),
-    chaiAsPromised  = require('chai-as-promised'),
-    log             = require('./log'),
-    DDP             = require('./ddp'),
-    request         = require('request'),
-    Promise         = require('bluebird'),
-    _               = require('underscore'),
-    wrapAsync       = require('xolvio-sync-webdriverio').wrapAsync,
-    wrapAsyncObject = require('xolvio-sync-webdriverio').wrapAsyncObject,
-    SessionFactory  = require('./session-factory'),
-    widgets         = require('chimp-widgets'),
-    path            = require('path'),
-    colors          = require('colors'),
-    fs              = require('fs-extra'),
-    exit            = require('exit');
+var chai = require('chai'),
+  chaiAsPromised = require('chai-as-promised'),
+  log = require('./log'),
+  DDP = require('./ddp'),
+  request = require('request'),
+  Promise = require('bluebird'),
+  _ = require('underscore'),
+  wrapAsync = require('xolvio-sync-webdriverio').wrapAsync,
+  wrapAsyncObject = require('xolvio-sync-webdriverio').wrapAsyncObject,
+  SessionFactory = require('./session-factory'),
+  widgets = require('chimp-widgets'),
+  path = require('path'),
+  colors = require('colors'),
+  fs = require('fs-extra'),
+  exit = require('exit');
 
 var chimpHelper = {
   loadAssertionLibrary: function () {
@@ -74,7 +74,7 @@ var chimpHelper = {
         } else if (process.env['chimp.log'] === 'info' ||
           process.env['chimp.log'] === 'warn' ||
           process.env['chimp.log'] === 'error') {
-          return 'silent'
+          return 'silent';
         } else {
           return process.env['chimp.log'];
         }
@@ -123,7 +123,7 @@ var chimpHelper = {
         }
 
         if (process.env['chimp.baseUrl']) {
-          webdriverOptions.baseUrl = process.env['chimp.baseUrl']
+          webdriverOptions.baseUrl = process.env['chimp.baseUrl'];
         }
         if (process.env['chimp.watch']) {
           webdriverOptions.desiredCapabilities.applicationCacheEnabled = false;
@@ -217,7 +217,7 @@ var chimpHelper = {
       }
     };
 
-    var configureChimpWidgetsDriver = function() {
+    var configureChimpWidgetsDriver = function () {
       widgets.driver.api = global.browser;
     };
 
