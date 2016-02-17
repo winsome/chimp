@@ -68,10 +68,10 @@ try {
         throw error;
       }
       argv.port = port;
-      startChimp(argv);
+      global.chimp = startChimp(argv);
     });
   } else {
-    startChimp(argv)
+    global.chimp = startChimp(argv);
   }
 
 } catch (ex) {
@@ -88,4 +88,5 @@ function startChimp (options) {
     }
     exit(err ? 2 : 0);
   });
+  return chimp;
 }

@@ -65,6 +65,8 @@ function Chimp(options) {
   this.exec = require('child_process').exec;
   this.fs = fs;
 
+  // TODO: Remove this, when all references to the environment variables
+  //       have been removed
   // store all cli parameters in env hash
   for (var option in options) {
     // Note: Environment variables are always strings.
@@ -81,16 +83,15 @@ function Chimp(options) {
  * @api public
  */
 Chimp.prototype.init = function (callback) {
-  var self = this;
-
   try {
+    log.setLevel(this.options.debug ? 'debug' : this.options.log);
     this._initSimianResultBranch();
     this._initSimianBuildNumber();
   } catch (error) {
     callback(error);
     return;
   }
-  self.selectMode(callback);
+  this.selectMode(callback);
 };
 
 Chimp.prototype._initSimianResultBranch = function () {
@@ -163,8 +164,8 @@ Chimp.prototype.watch = function () {
     usePolling: this.options.watchWithPolling
   });
 
-  if (process.env['chimp.watchSource']) {
-    watcher.add(process.env['chimp.watchSource']);
+  if (this.options.watchSource) {
+    watcher.add(this.options.watchSource);
   }
 
   var self = this;
@@ -237,7 +238,7 @@ Chimp.prototype._startServer = function (port) {
 
   server.start();
 
-  log.info('[chimp] Chimp server is running on port', port, process.env['chimp.ddp']);
+  log.info('[chimp] Chimp server is running on port', port, this.options.ddp);
 
   if (booleanHelper.isTruthy(this.options.ddp)) {
     this._handshakeOverDDP();
@@ -246,8 +247,8 @@ Chimp.prototype._startServer = function (port) {
 
 Chimp.prototype._handshakeOverDDP = function () {
   var ddp = new DDPClient({
-    host: process.env['chimp.ddp'].match(/http:\/\/(.*):/)[1],
-    port: process.env['chimp.ddp'].match(/:([0-9]+)/)[1],
+    host: this.options.ddp.match(/http:\/\/(.*):/)[1],
+    port: this.options.ddp.match(/:([0-9]+)/)[1],
     ssl: false,
     autoReconnect: true,
     autoReconnectTimer: 500,
@@ -465,11 +466,11 @@ Chimp.prototype._createProcesses = function () {
   var processes = [];
 
   if (this.options.browser === 'phantomjs') {
-    process.env['chimp.host'] = this.options.host = 'localhost';
+    this.options.host = 'localhost';
     var phantom = new exports.Phantom(this.options);
     processes.push(phantom);
   } else if (booleanHelper.isFalsey(this.options.host)) {
-    process.env['chimp.host'] = this.options.host = 'localhost';
+    this.options.host = 'localhost';
     var selenium = new exports.Selenium(this.options);
     processes.push(selenium);
   }

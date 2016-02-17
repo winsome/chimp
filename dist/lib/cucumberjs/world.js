@@ -3,8 +3,9 @@
 var _ = require('underscore');
 
 module.exports = function () {
-  chimpHelper.init();
-  chimpHelper.loadAssertionLibrary();
+  var chimp = global.chimp;
+  chimpHelper.init(chimp);
+  chimpHelper.loadAssertionLibrary(chimp);
 
   var UserWorld = this.World;
   this.World = function World() {
@@ -15,6 +16,7 @@ module.exports = function () {
     this.ddp = global.ddp;
     this.mirror = global.ddp;
     this.server = global.ddp;
+    this.chimp = chimp;
     this.chimpWidgets = global.chimpWidgets;
 
     if (UserWorld) {

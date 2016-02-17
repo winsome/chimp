@@ -24,19 +24,6 @@ describe('Chimp', function () {
       expect(chimp.options).toBe(myOptions);
     });
 
-    it('puts all the options on the environment hash prefixed with [chimp.]', function () {
-
-      var myOptions = {
-        a: 1,
-        b: "aString"
-      };
-      var chimp = new Chimp(myOptions);
-
-      expect(process.env['chimp.a']).toBe(myOptions.a.toString());
-      expect(process.env['chimp.b']).toBe(myOptions.b);
-
-    });
-
   });
 
   describe('bin path', function () {

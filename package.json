@@ -47,7 +47,8 @@
     ],
     "unmockedModulePathPatterns": [
       "core-js/.*",
-      "babel-runtime/.*"
+      "babel-runtime/.*",
+      "lodash.*"
     ]
   },
   "dependencies": {

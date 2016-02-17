@@ -11,7 +11,7 @@ var _              = require('underscore'),
  * @param {Object} options
  * @api public
  */
-function Selenium (options) {
+function Selenium(options) {
 
   if (!options) {
     throw new Error('options is required');

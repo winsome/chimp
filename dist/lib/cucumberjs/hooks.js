@@ -18,8 +18,8 @@ module.exports = function hooks() {
 
   this.registerHandler('BeforeFeatures', function () {
     log.debug('[chimp][hooks] Starting BeforeFeatures');
-    global.chimpHelper.setupBrowserAndDDP();
-    global.chimpHelper.createGlobalAliases();
+    global.chimpHelper.setupBrowserAndDDP(global.chimp);
+    global.chimpHelper.createGlobalAliases(global.chimp);
     log.debug('[chimp][hooks] Finished BeforeFeatures');
     // noinspection JSUnresolvedVariable
     if (global.UserDefinedBeforeFeatures) {

@@ -5,10 +5,12 @@ var exit = require('exit');
 var log = require('../log');
 
 before(function () {
+  var chimp = global.chimp;
+  chimp.options.chai = true;
   process.env['chimp.chai'] = true;
-  chimpHelper.loadAssertionLibrary();
-  chimpHelper.init();
-  chimpHelper.setupBrowserAndDDP();
+  chimpHelper.loadAssertionLibrary(chimp);
+  chimpHelper.init(chimp);
+  chimpHelper.setupBrowserAndDDP(chimp);
 });
 
 after(function () {

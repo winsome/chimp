@@ -1,5 +1,11 @@
 'use strict';
 
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var log = require('./log'),
     URL = require('url'),
     DDPClient = require('xolvio-ddp'),
@@ -11,16 +17,19 @@ var log = require('./log'),
  *
  * @api public
  */
-function DDP() {
+function DDP(options) {
+  this.options = _lodash2.default.defaults({}, options, {
+    ddp: null,
+    sync: true
+  });
   log.debug('[chimp][ddp] creating DDP wrapper');
-  process.env.ROOT_URL = process.env.ROOT_URL || process.env['chimp.ddp'];
-  this.url = this._getUrl(process.env.ROOT_URL);
+  this.url = this._getUrl(this.options.ddp);
 }
 
 DDP.prototype.connect = function () {
   var options = this._getOptions();
   log.debug('[chimp][ddp] Connecting to DDP server', options);
-  return wrapAsyncObject(new DDPClient(options), ['connect', 'call', 'apply', 'callWithRandomSeed', 'subscribe'], { syncByDefault: booleanHelper.isTruthy(process.env['chimp.sync']) });
+  return wrapAsyncObject(new DDPClient(options), ['connect', 'call', 'apply', 'callWithRandomSeed', 'subscribe'], { syncByDefault: booleanHelper.isTruthy(this.options.sync) });
 };
 
 DDP.prototype._getUrl = function (ddpHost) {

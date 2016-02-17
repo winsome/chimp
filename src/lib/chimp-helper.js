@@ -16,8 +16,9 @@ var chai            = require('chai'),
     booleanHelper   = require('./boolean-helper');
 
 var chimpHelper = {
-  loadAssertionLibrary: function () {
-    if (booleanHelper.isTruthy(process.env['chimp.chai'])) {
+  loadAssertionLibrary(chimp) {
+    const options = chimp.options;
+    if (booleanHelper.isTruthy(options.chai)) {
       log.debug('[chimp][helper] Using the chai-expect assertion library');
       chai.use(chaiAsPromised);
       chai.should();
@@ -31,62 +32,60 @@ var chimpHelper = {
     }
   },
 
-  setupGlobals: function () {
+  setupGlobals(chimp) {
     global.wrapAsync = wrapAsync;
     global.wrapAsyncObject = wrapAsyncObject;
 
     // give users access the request module
     global.request = request;
     _.extend(global, wrapAsyncObject(global, ['request'], {
-      syncByDefault: booleanHelper.isTruthy(process.env['chimp.sync'])
+      syncByDefault: booleanHelper.isTruthy(chimp.sync),
     }));
 
     // Give the user access to Promise functions. E.g. Promise.all.
     global.Promise = Promise;
 
-    if (booleanHelper.isTruthy(process.env['chimp.ddp'])) {
-      global.ddp = new DDP().connect();
+    if (booleanHelper.isTruthy(chimp.ddp)) {
+      global.ddp = new DDP(_.pick(chimp.options, 'ddp', 'sync')).connect();
+      if (!process.env.ROOT_URL) {
+        process.env.ROOT_URL = chimp.options.ddp;
+      }
     }
   },
 
-  configureWidgets: function () {
+  configureWidgets() {
     // CHIMP WIDGETS
     global.chimpWidgets = widgets;
   },
 
-  createGlobalAliases: function () {
+  createGlobalAliases() {
     global.driver = global.browser;
     global.client = global.browser;
     global.mirror = global.ddp;
     global.server = global.ddp;
   },
 
-  setupBrowserAndDDP: function () {
-
+  setupBrowserAndDDP(chimp) {
+    const options = chimp.options;
     var setupBrowser = function () {
       log.debug('[chimp][helper] getting browser');
-      var customChimpConfigPath = path.resolve(process.cwd(), process.env['chimp.path'], 'chimp.js');
+      var customChimpConfigPath = path.resolve(process.cwd(), options.path, 'chimp.js');
 
       var _translateLogLevel = function () {
-        if (booleanHelper.isTruthy(process.env['chimp.webdriverLogLevel'])) {
-          return process.env['chimp.webdriverLogLevel'];
-        } else if (process.env['chimp.log'] === 'info' ||
-          process.env['chimp.log'] === 'warn' ||
-          process.env['chimp.log'] === 'error') {
-          return 'silent'
+        if (booleanHelper.isTruthy(options.webdriverLogLevel)) {
+          return options.webdriverLogLevel;
+        } else if (options.log === 'info' ||
+          options.log === 'warn' ||
+          options.log === 'error') {
+          return 'silent';
         } else {
-          return process.env['chimp.log'];
+          return options.log;
         }
       };
 
-      global.sessionManager = new SessionFactory({
-        host: process.env['chimp.host'],
-        port: process.env['chimp.port'],
-        user: process.env['chimp.user'],
-        key: process.env['chimp.key'],
-        browser: process.env['chimp.browser'],
-        deviceName: process.env['chimp.deviceName']
-      });
+      global.sessionManager = new SessionFactory(
+        _.pick(options, 'host', 'port', 'user', 'key', 'browser', 'deviceName')
+      );
 
       if (fs.existsSync(customChimpConfigPath)) {
         var customChimpConfigurator = wrapAsync(require(customChimpConfigPath));
@@ -94,41 +93,41 @@ var chimpHelper = {
       } else {
         log.debug('[chimp][helper] custom chimp.js not found, loading defaults');
         var webdriverOptions = {
-          waitforTimeout: parseInt(process.env['chimp.waitForTimeout']),
-          timeoutsImplicitWait: parseInt(process.env['chimp.timeoutsImplicitWait']),
+          waitforTimeout: parseInt(options.waitForTimeout, 10),
+          timeoutsImplicitWait: parseInt(options.timeoutsImplicitWait, 10),
           desiredCapabilities: {
-            browserName: process.env['chimp.browser'],
-            platform: process.env['chimp.platform'],
-            name: process.env['chimp.name'],
-            version: process.env['chimp.version']
+            browserName: options.browser,
+            platform: options.platform,
+            name: options.name,
+            version: options.version,
           },
-          user: process.env['chimp.user'] || process.env.SAUCE_USERNAME,
-          key: process.env['chimp.key'] || process.env.SAUCE_ACCESS_KEY,
-          host: process.env['chimp.host'],
-          port: process.env['chimp.port'],
+          user: options.user || process.env.SAUCE_USERNAME,
+          key: options.key || process.env.SAUCE_ACCESS_KEY,
+          host: options.host,
+          port: options.port,
           logLevel: _translateLogLevel(),
-          screenshotPath: process.env['chimp.screenshotPath'],
-          sync: booleanHelper.isTruthy(process.env['chimp.sync'])
+          screenshotPath: options.screenshotPath,
+          sync: booleanHelper.isTruthy(options.sync),
         };
 
         webdriverOptions.desiredCapabilities.chromeOptions = webdriverOptions.desiredCapabilities.chromeOptions || {};
-        if (booleanHelper.isTruthy(process.env['chimp.chromeBin'])) {
-          webdriverOptions.desiredCapabilities.chromeOptions.binary = process.env['chimp.chromeBin'];
+        if (booleanHelper.isTruthy(options.chromeBin)) {
+          webdriverOptions.desiredCapabilities.chromeOptions.binary = options.chromeBin;
         }
-        if (booleanHelper.isTruthy(process.env['chimp.chromeArgs'])) {
-          webdriverOptions.desiredCapabilities.chromeOptions.args = process.env['chimp.chromeArgs'].split(',');
-        } else if (booleanHelper.isTruthy(process.env['chimp.chromeNoSandbox'])) {
+        if (booleanHelper.isTruthy(options.chromeArgs)) {
+          webdriverOptions.desiredCapabilities.chromeOptions.args = options.chromeArgs.split(',');
+        } else if (booleanHelper.isTruthy(options.chromeNoSandbox)) {
           webdriverOptions.desiredCapabilities.chromeOptions.args = ['no-sandbox'];
         }
 
-        if (booleanHelper.isTruthy(process.env['chimp.baseUrl'])) {
-          webdriverOptions.baseUrl = process.env['chimp.baseUrl']
+        if (booleanHelper.isTruthy(options.baseUrl)) {
+          webdriverOptions.baseUrl = options.baseUrl;
         }
-        if (process.env['chimp.watch']) {
+        if (options.watch) {
           webdriverOptions.desiredCapabilities.applicationCacheEnabled = false;
         }
-        webdriverOptions.desiredCapabilities['tunnelIdentifier'] = process.env['chimp.tunnelIdentifier'];
-        webdriverOptions.desiredCapabilities['browserstack.local'] = process.env['chimp.browserstackLocal'];
+        webdriverOptions.desiredCapabilities['tunnelIdentifier'] = options.tunnelIdentifier;
+        webdriverOptions.desiredCapabilities['browserstack.local'] = options.browserstackLocal;
 
         log.debug('[chimp][helper] webdriverOptions are ', JSON.stringify(webdriverOptions));
 
@@ -149,20 +148,20 @@ var chimpHelper = {
       browser.addCommand('capture', function (name) {
         name = name.replace(/[ \\~#%&*{}/:<>?|"-]/g, '_');
         var location = (browser.screenshotsCount++) + '_' + name + '.png';
-        fs.mkdirsSync(process.env['chimp.screenshotsPath']);
-        var ssPath = path.join(process.env['chimp.screenshotsPath'], location);
+        fs.mkdirsSync(options.screenshotsPath);
+        var ssPath = path.join(options.screenshotsPath, location);
         log.debug('[chimp][helper] saving screenshot to', ssPath);
         this.saveScreenshot(ssPath, false);
         log.debug('[chimp][helper] saved screenshot to', ssPath);
       });
 
-      browser.timeoutsAsyncScriptSync(parseInt(process.env['chimp.timeoutsAsyncScript']));
+      browser.timeoutsAsyncScriptSync(parseInt(options.timeoutsAsyncScript));
       log.debug('[chimp][helper] set timeoutsAsyncScript');
 
-      if (process.env['chimp.browser'] === 'phantomjs') {
+      if (options.browser === 'phantomjs') {
         browser.setViewportSizeSync({
-          width: process.env['chimp.phantom_w']?parseInt(process.env['chimp.phantom_w']):1280,
-          height: process.env['chimp.phantom_h']?parseInt(process.env['chimp.phantom_h']):1024
+          width: options.phantom_w ? parseInt(options.phantom_w, 10) : 1280,
+          height: options.phantom_h ? parseInt(options.phantom_h, 10) : 1024,
         });
       }
     };
@@ -193,8 +192,8 @@ var chimpHelper = {
 
     var setupDdp = function () {
       log.debug('[chimp][helper] setup DDP');
-      if (process.env['chimp.ddp']) {
-        log.debug('[chimp][helper] connecting via DDP to', process.env['chimp.ddp']);
+      if (options.ddp) {
+        log.debug('[chimp][helper] connecting via DDP to', options.ddp);
         try {
           global.ddp.connectSync();
           addServerExecute();
@@ -223,7 +222,7 @@ var chimpHelper = {
     try {
       setupBrowser();
       initBrowser();
-      if (booleanHelper.isTruthy(process.env['chimp.ddp'])) {
+      if (booleanHelper.isTruthy(options.ddp)) {
         setupDdp();
       }
       configureChimpWidgetsDriver();
@@ -235,11 +234,11 @@ var chimpHelper = {
     }
   },
 
-  init: function () {
-    this.configureWidgets();
-    this.setupGlobals();
-    this.createGlobalAliases();
-  }
+  init(chimp) {
+    this.configureWidgets(chimp);
+    this.setupGlobals(chimp);
+    this.createGlobalAliases(chimp);
+  },
 };
 
 global.chimpHelper = chimpHelper;
