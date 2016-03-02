@@ -4,7 +4,7 @@ var log       = require('./log'),
     booleanHelper   = require('./boolean-helper'),
     wrapAsyncObject = require('xolvio-sync-webdriverio').wrapAsyncObject;
 
-import _ from 'lodash';
+import _ from 'underscore';
 
 /**
  * DDP Constructor
